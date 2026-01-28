@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Produk</title>
+</head>
+<body>
+
+<h2>Edit Produk</h2>
+
+<form method="post" action="/update/{{ product[0] }}">
+    <label>Nama Produk</label><br>
+    <input type="text" name="nama" value="{{ product[1] }}"><br><br>
+
+    <label>Harga</label><br>
+    <input type="number" name="harga" value="{{ product[2] }}"><br><br>
+
+    <label>Image URL</label><br>
+    <input type="text" name="image_url" value="{{ product[3] }}"><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+<div class="card">
+  <img src="{{ p[2] }}">
+  <h3>{{ p[0] }}</h3>
+  <p>Harga: Rp {{ p[1] }}</p>
+
+  <a href="/edit/{{ p[3] }}">✏️ Edit</a>
+  |
+  <a href="/delete/{{ p[3] }}" onclick="return confirm('Yakin?')">🗑️ Hapus</a>
+</div>
+
+
+</body>
+</html>
