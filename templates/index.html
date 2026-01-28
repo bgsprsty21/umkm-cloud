@@ -146,29 +146,27 @@
 
 <!-- PRODUK -->
 <div class="grid">
-    {% for p in products %}
-    <div class="card">
-        <img 
-            src="{{ p[2] if p[2] else '/static/no-image.png' }}"
-            alt="{{ p[0] }}"
-            loading="lazy"
-        >
-        <div class="card-body">
-            <h3>{{ p[0] }}</h3>
-            <p class="harga">Harga: Rp {{ "{:,}".format(p[1]) }}</p>
+   {% for p in products %}
+<div class="card">
+    <img src="{{ p.image_url }}" alt="{{ p.nama_produk }}"
+         onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
 
-            {% if session.get("admin") %}
-            <div class="admin-action">
-                <a class="edit" href="/edit/{{ p[3] }}">✏️ Edit</a>
-                <a class="hapus" href="/delete/{{ p[3] }}"
-                   onclick="return confirm('Yakin hapus produk ini?')">
-                   🗑️ Hapus
-                </a>
-            </div>
-            {% endif %}
+    <div class="card-body">
+        <h3>{{ p.nama_produk }}</h3>
+        <p class="harga">Harga: Rp {{ p.harga }}</p>
+
+        {% if session.get("admin") %}
+        <div class="admin-action">
+            <a class="edit" href="/edit/{{ p.id }}">✏️ Edit</a>
+            <a class="hapus" href="/delete/{{ p.id }}"
+               onclick="return confirm('Yakin hapus produk ini?')">
+               🗑️ Hapus
+            </a>
         </div>
+        {% endif %}
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 </div>
 
 </body>

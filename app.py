@@ -24,11 +24,15 @@ def home():
     cur = conn.cursor()
 
     cur.execute("""
-    SELECT nama_produk, harga, image_url, id
+    SELECT 
+        id,
+        nama_produk,
+        harga,
+        image_url
     FROM products
     ORDER BY id ASC
     """)
-
+    
     products = cur.fetchall()
 
     cur.close()
